@@ -1,4 +1,4 @@
-// Set events on game buttons 
+// Set event listeners on game buttons 
 var newGameBtn = document.getElementById('js-newGameButton');
 newGameBtn.addEventListener('click', newGame);
 
@@ -7,21 +7,21 @@ var pickRock = document.getElementById('js-playerPick_rock'),
     pickScissors = document.getElementById('js-playerPick_scissors');
 
 pickRock.addEventListener('click', function() { 
-	playerPick('rock'); 
+    playerPick('rock'); 
 });
 
 pickPaper.addEventListener('click', function() { 
-	playerPick('paper'); 
+    playerPick('paper'); 
 });
 
 pickScissors.addEventListener('click', function() { 
-	playerPick('scissors'); 
+    playerPick('scissors'); 
 });
 
 // Set initial values
 var gameState = 'notStarted',  //started // ended
     player = {
-    	name: '',
+        name: '',
         score: 0
     },
     computer = {
@@ -50,7 +50,6 @@ function setGameElements() {
             resultsElem.style.display = 'none';
   }
 }
-
 setGameElements();
 
 // Set variables for result table
@@ -60,10 +59,10 @@ var playerPointsElem = document.getElementById('js-playerPoints'),
 
 //Start a new game
 function newGame() {
-	player.name = prompt('Please enter your name', "Player's name");
-  	
+    player.name = prompt('Please enter your name', "Player's name");
+    
     if (player.name) {
-    	player.score = computer.score = 0;
+        player.score = computer.score = 0;
         gameState = 'started';
         setGameElements();
 
@@ -118,25 +117,24 @@ function playerPick(playerPick) {
 function setGamePoints() {
     playerPointsElem.innerHTML = player.score;
     computerPointsElem.innerHTML = computer.score;
-    checkGameWinner()
+    setTimeout(checkGameWinner, 100);
 }
 
-// Game over
 function checkGameWinner() {
     if (player.score === 10) {
         alert('Congratulations! You are the winner!');
         gameState = 'ended';
- 		resetGame(); 
+        resetGame(); 
     } else if (computer.score === 10) {
         alert("You've lost! Game Over!");
         gameState = 'ended';
- 		resetGame(); 
-    }
-   setGameElements();
+        resetGame(); 
+    }     
+    setGameElements();
 }
 
 function resetGame() {
-	playerPickElem.innerHTML = "Player selection";
+    playerPickElem.innerHTML = "Player selection";
     computerPickElem.innerHTML = "Computer selection";
     playerResultElem.innerHTML = "Player Score";
     computerResultElem.innerHTML = "Computer Score";
