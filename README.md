@@ -1,1 +1,1 @@
-# Task_9.7_Game
+Game written in javascript: rock, paper, scissors
